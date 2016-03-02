@@ -1,6 +1,7 @@
-// Remove duplicated from LinkedList
-// Using hashmap, storing each element and see if that exist then remove current node.
-// what if we can't use additional storage.
+// Add two integer list to sum them
+// 8->7->1->6
+// 5->9->2
+// output: 3->7->4->6
 
 
 #include "stdafx.h"
