@@ -59,6 +59,7 @@ public:
 		
 		}
 	}
+	
 	void printList()
 	{
 		if (_pHead == NULL)
@@ -138,6 +139,48 @@ public:
 	
 	
 	}
+	void sumListRecursive(LinkedList* list1, LinkedList* list2, int carry){
+		sumListRecursive(list1->_pHead, list2->_pHead, carry);
+	
+	}
+	
+	void sumListRecursive(Node* list1, Node* list2, int carry){
+		if (list1 == NULL && list2 == NULL && carry == 0)
+			return;
+		
+
+		int result = carry;
+		if (list1 != NULL)
+		{
+			result += list1->getValue();
+			list1 = (list1->getNext() == NULL) ? NULL : list1->getNext();
+		}
+		if (list2 != NULL)
+		{
+			result += list2->getValue();
+			list2 = (list2->getNext() == NULL) ? NULL : list2->getNext();
+		}
+
+		carry = result / 10;
+		result = result % 10;
+
+		
+		
+
+		sumListRecursive(list1, list2, carry);
+		
+		Node* curr = new Node(result);
+
+		if (_pHead == NULL)
+		{
+			_pHead = curr;
+		}
+		else
+		{
+			curr->setNext(_pHead);
+			_pHead = curr;
+		}
+	}
 };
 
 
@@ -158,7 +201,11 @@ int main(){
 	newList2->addNode(9);
 	newList2->addNode(2);
 	newList2->addNode(2);
-	newList3->sumList(newList1, newList2);
+	//newList3->sumList(newList1, newList2);
+
+	
+
+	newList3->sumListRecursive(newList1, newList2, 0);
 	newList3->printList();
 	
 
