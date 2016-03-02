@@ -1,7 +1,7 @@
-// Remove duplicated from LinkedList
-// Using hashmap, storing each element and see if that exist then remove current node.
-// what if we can't use additional storage.
-
+// partition listnked list in higher/lower division by given number
+// input 3->5->8->5->10->2->1 (int is 5)
+// output 3->2->1->5->5->8->10
+		
 
 #include "stdafx.h"
 #include <iostream>
@@ -106,6 +106,33 @@ public:
 	
 	}
 
+
+	void partition2(int x)
+	{
+		if (_pHead == NULL || _pHead->getNext() == NULL)
+			return;
+
+		Node* head = _pHead;
+		Node* tail = _pHead;
+
+		while (_pHead != NULL )
+		{
+			Node* temp = _pHead->getNext();
+			if (_pHead->getValue() < x)
+			{
+				_pHead->setNext(head);
+				head = _pHead;
+			}
+			else
+			{
+				tail->setNext(_pHead);
+				tail = _pHead;
+			}
+			_pHead = temp;
+		}
+		tail->setNext(NULL);
+		_pHead = head;
+	}
 	void partition(int x)
 	{
 		// input 3->5->8->5->10->2->1
@@ -175,7 +202,7 @@ int main(){
 	newList->addNode(5);
 	newList->addNode(5);
 
-	newList->partition(0);
+	newList->partition2(15);
 	newList->printList();
 	
 
