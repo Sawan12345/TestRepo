@@ -2,6 +2,7 @@
 // 6->1->6  = true
 // 6->1->7  = false
 // Use stack, push half of the element and then pop them and compare with slow iterator.
+// other lenghty way would be reversing cloning existing list and comparing both lists. 
 
 
 #include "stdafx.h"
