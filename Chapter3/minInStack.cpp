@@ -4,6 +4,11 @@
 // 3. Keep another stack of min values, one popped value is top of minStack , pop element of minStack too.
 // This would take less space compare to first.
 
+// looks easier but gets trickier when need to deal with inheritance
+// minStack will inherite Stack
+// Need to overload  push/pop operations
+// create min operation.
+
 #include "stdafx.h"
 #include <iostream>
 
