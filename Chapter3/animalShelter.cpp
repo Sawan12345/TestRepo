@@ -1,5 +1,3 @@
-// Animal Shelter program
-// 
 
 #include "stdafx.h"
 #include <iostream>
@@ -20,12 +18,12 @@ public:
 		name = "";
 		type = "";
 	}
-	Animal(string n,string t){
+	Animal(string n, string t){
 		rank = 0;
 		name = n;
 		type = t;
 	}
-	void setRank(int r)
+	virtual void setRank(int r)
 	{
 		rank = r;
 	}
@@ -36,32 +34,32 @@ public:
 	int getRank(){ return rank; }
 	string getName() { return name; }
 	string getType(){ return type; }
-	
+
 };
 
 class Dog : public Animal{
-	
+
 public:
-	Dog(string name) : Animal(name,string("dog")){}
-	
+	Dog(string name) : Animal(name, string("dog")){}
+
 
 };
 class Cat : public Animal{
-	
+
 public:
-	Cat(string name) : Animal(name,string("cat")){}
-	
+	Cat(string name) : Animal(name, string("cat")){}
+
 
 };
 
 class AnimalShelter{
 	queue<Animal*> dogs;
 	queue<Animal*> cats;
-	int rank=0;
+	int rank = 0;
 public:
 	void enqueue(Animal *a){
 		a->setRank(rank++);
-		if (a->getType() == "dog")
+		if (dynamic_cast<Dog*>(a))
 		{
 			dogs.push(a);
 		}
@@ -79,11 +77,11 @@ public:
 		{
 			return dequeueDog();
 		}
-		
+
 		if (dogs.front()->getRank() < cats.front()->getRank())
 		{
-			 a = dogs.front();
-			 dogs.pop();
+			a = dogs.front();
+			dogs.pop();
 		}
 		else{
 			a = cats.front();
@@ -93,7 +91,7 @@ public:
 	}
 
 	Animal* dequeueDog(){
-		if (!dogs.empty()) 
+		if (!dogs.empty())
 		{
 			Animal *a = dogs.front();
 			dogs.pop();
@@ -106,7 +104,7 @@ public:
 			cout << "Shelter is empty at this time, come back later." << endl;
 			return NULL;
 		}
-		
+
 	}
 	Animal* dequeueCat(){
 		if (!cats.empty())
@@ -127,70 +125,6 @@ public:
 
 };
 
-class Employee{
-protected:
-	string name;
-	double pay;
-public:
-	Employee(){
-		name = "";
-		pay = 0;
-	}
-	Employee(string n, double p)
-	{
-		name = n;
-		pay = p;
-	}
-	void setName(string n){
-		name = n;
-	}
-	string getName(){ return name; }
-	void setPay(double p)
-	{
-		pay = p;
-	}
-	double getPay(){ return pay; }
-	string toString()
-	{
-		stringstream stm;
-		stm << name << ":" << pay;
-		return stm.str();
-	}
-
-	virtual double grossPay(int hours)
-	{
-		return pay * hours;
-	}
-};
-
-class Manager : public Employee{
-private:
-	bool salaried;
-public:
-	Manager(string name, double pay, bool isSalaried) :Employee(name, pay), salaried(isSalaried){}
-	bool getSalaried(){ return salaried; }
-	double grossPay(int hours){
-		if (salaried)
-			return pay;
-		else
-			return pay*hours;
-	}
-	string toString(){
-		stringstream stm;
-		string salary;
-		if (salaried)
-		{
-			salary = "Salaried";
-		}
-		else
-		{
-			salary = "Hourly";
-		}
-		stm << name << ":" << pay << ":" << salary << endl;
-		return stm.str();
-	}
-
-};
 
 int main()
 {
@@ -227,11 +161,11 @@ int main()
 
 
 	Animal *get = sltr.dequeueAny();
-	cout << get->getName() << get->getRank() << get->getType() << endl;
+	cout << get->getName() << " " << get->getRank() << " " << get->getType() << endl;
 	get = sltr.dequeueDog();
-	cout << get->getName() << get->getRank() << get->getType() << endl;
+	cout << get->getName() << " " << get->getRank() << " " << get->getType() << endl;
 	get = sltr.dequeueCat();
-	cout << get->getName() << get->getRank() << get->getType() << endl;
+	cout << get->getName() << " " << get->getRank() << " " << get->getType() << endl;
 
 
 	return 0;
