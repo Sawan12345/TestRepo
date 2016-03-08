@@ -8,47 +8,48 @@
 
 using namespace std;
 
+template <class T>
 class Stack{
-	int *arr;
+	T *arr;
 	int top;
 public:
 	Stack(int size){
-		arr = new int(size);
+		arr = new T[size];
 		top = -1;
 	}
 
-	void push(int v)
+	void push(T v)
 	{
 		arr[++top] = v;
 	}
 
-	int pop()
+	T pop()
 	{
 		if (top > -1)
 		{
-			int v = arr[top];
+			T v = arr[top];
 			top--;
 			return v;
 			
 		}
 		cout << "Stack is empty";
-		return -1;
+		throw;
 	}
 
-	int topp()
+	T topp()
 	{
 		if (top > -1)
 			return arr[top];
 		cout << "Stack is empty";
-		return -1;
+		throw;
 	}
 
-	int peek(int index)
+	T peek(int index)
 	{
 		if (index > -1 && index <= top)
 			return arr[index];
 		cout << "Index out of bound.";
-		return -1;
+		throw;
 	
 	}
 	void print()
@@ -70,12 +71,12 @@ public:
 
 int main()
 {
-	Stack st(10);
-	st.push(100);
-	st.push(101);
-	st.push(103);
-	st.push(106);
-	st.push(10);
+	Stack<string> st(10);
+	st.push("100");
+	st.push("101");
+	st.push("103");
+	st.push("106");
+	st.push("10");
 	st.print();
 	cout << st.pop() << endl;
 	cout << st.topp() << endl;
