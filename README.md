@@ -6,8 +6,10 @@ Chapter 2-  LinkList            - Done
 
 Chapter 3-  Stack and Queue     - Done
 
-Chapter 4- Trees and Graphs
+Chapter 4-  Trees and Graphs
 
-Chapter 5- Bit manipulation 
+Chapter 5-  Bit manipulation 
 
-Chapter 6-
+Chapter 6-  Mathematics
+
+Chapter 7-  OOP
